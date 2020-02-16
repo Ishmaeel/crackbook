@@ -44,6 +44,8 @@ var_defaults = {
   dimmerThreshold: '0',
   dimmerDelay: '3.0',
   dimmerDelayIncrement: '0.05',
+  dimmerBackgroundColor: '"#001000"',
+  dimmerTextColor: '"#ffffff"',
   redirectProbability: '2',
   startTime: '0',
   endTime: '' + 24*60-1,

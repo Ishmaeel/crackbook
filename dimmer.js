@@ -56,7 +56,7 @@ function addDimmer(delay) {
   // TODO: add a picture
 
   // Message
-  dimmer.style.color = "#ffffff";
+  dimmer.style.color = dimmer_options.textColor;
   dimmer.style.paddingTop = window.innerHeight / 2 - 30 + "px";
   dimmer.style.fontSize = '36px';
   dimmer.style.fontFamily = 'Georgia';
@@ -88,7 +88,7 @@ function addDimmer(delay) {
 
   // Background.
   dimmer.style.zIndex = "2147483647";
-  dimmer.style.background = "#001000";
+  dimmer.style.background = dimmer_options.backgroundColor;
   if (dimmer_options.blurBackground) {
     dimmer.style.background = "rgba(0, 16, 0, .6)";
     dimmer.style.backdropFilter = "blur(10px)";

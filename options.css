@@ -57,6 +57,11 @@ input#dimmerDelay, input#base_delay, input#dimmerDelayIncrement {
   width: 4em;
 }
 
+input#dimmerBackgroundColor, input#dimmerTextColor {
+  width: 5em;
+  font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+}
+
 input#startTime, input#endTime {
   width: 3.5em;
   padding-left: 0.2em;

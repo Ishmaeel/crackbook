@@ -128,6 +128,8 @@ function showSettings() {
   document.getElementById("dimmerThreshold").value = getLocal('dimmerThreshold');
   document.getElementById("dimmerDelay").value = getLocal('dimmerDelay').toFixed(2);
   document.getElementById("dimmerDelayIncrement").value = getLocal('dimmerDelayIncrement').toFixed(2);
+  document.getElementById("dimmerBackgroundColor").value = getLocal('dimmerBackgroundColor');
+  document.getElementById("dimmerTextColor").value = getLocal('dimmerTextColor');
   document.getElementById("reset_daily_flag").checked = getLocal('reset_daily_flag');
   document.getElementById("base_delay").value = getLocal('base_delay').toFixed(2);
 
@@ -155,6 +157,11 @@ function showSettings() {
   }
 }
 
+function isHtmlColor(strColor){
+  var s = new Option().style;
+  s.color = strColor;
+  return s.color != "";
+}
 
 function saveSettings() {
   /* Save settings from submitted form. */
@@ -177,6 +184,16 @@ function saveSettings() {
   var dimmerDelayIncrement = parseFloat(document.getElementById("dimmerDelayIncrement").value);
   if (isNaN(dimmerDelayIncrement) || dimmerDelayIncrement < 0) {
     dimmerDelayIncrement = getLocal('dimmerDelayIncrement');
+  }
+
+  var dimmerBackgroundColor = document.getElementById('dimmerBackgroundColor').value;
+  if (!isHtmlColor(dimmerBackgroundColor)) {
+    dimmerBackgroundColor = getLocal('dimmerBackgroundColor');
+  }
+
+  var dimmerTextColor = document.getElementById('dimmerTextColor').value;
+  if (!isHtmlColor(dimmerTextColor)) {
+    dimmerTextColor = getLocal('dimmerTextColor');
   }
 
   var base_delay = parseFloat(document.getElementById("base_delay").value);
@@ -203,6 +220,8 @@ function saveSettings() {
   setLocal('dimmerThreshold', dimmerThreshold);
   setLocal('dimmerDelay', dimmerDelay);
   setLocal('dimmerDelayIncrement', dimmerDelayIncrement);
+  setLocal('dimmerBackgroundColor', dimmerBackgroundColor);
+  setLocal('dimmerTextColor', dimmerTextColor);
   setLocal('reset_daily_flag', reset_daily_flag);
   setLocal('base_delay', base_delay);
   setLocal('blurBackground', blurBackground);
