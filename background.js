@@ -35,7 +35,8 @@ function updateIcon(active, inJunk) {
   if (active === null) // null or undefined
     active = extensionActive();
   if (inJunk === null) { // null or undefined
-    chrome.tabs.getSelected(null, function (selectedTab) {
+    chrome.tabs.query({ active: true, currentWindow:true }, function (selectedTabs) {
+      var selectedTab = selectedTabs[0];
       var junkDomain = lookupJunkDomain(selectedTab.url);
       updateIcon(active, !!junkDomain);
     });
@@ -173,7 +174,8 @@ function increaseDimmerDelay() {
   setLocal('dimmerDelay', newDelay);
 }
 
-function tabSelectionChangedHandler(tabId, selectInfo) {
+function tabSelectionChangedHandler(tab, selectInfo) {
+  var tabId = tab.tabId;
   if (lastDimmedTabId) {
     invokeDimmer(lastDimmedTabId, "suspend");
     lastDimmedTabId = null;
@@ -199,7 +201,8 @@ function windowFocusChangedHandler(windowId) {
   }
 
   if (windowId != chrome.windows.WINDOW_ID_NONE) {
-    chrome.tabs.getSelected(windowId, function (tab) {
+    chrome.tabs.query({ active: true, windowId: windowId }, function (tabs) {
+      var tab = tabs[0];
       if (isNormalUrl(tab.url)) {
         var junkDomain = lookupJunkDomain(tab.url);
         updateIcon(null, !!junkDomain);
@@ -214,9 +217,13 @@ function windowFocusChangedHandler(windowId) {
 
 // A wrapper function that also figures out the selected tab.
 function newPageHandler(request, sender, sendResponse) {
-  chrome.tabs.getSelected(null, function (selectedTab) {
-    handleNewPage(sender.tab, selectedTab, sendResponse);
+  chrome.tabs.query({ active: true, currentWindow:true }, function (selectedTabs) {
+    var selectedTab = selectedTabs[0];
+    // safe to assume there is exactly one active tab in a window
+    handleNewPage(sender.tab, selectedTabs[0], sendResponse);
   });
+  // return true to prevent sendResponse handler from being closed
+  return true;
 }
 
 function showNotification() {
@@ -277,8 +284,8 @@ function initIcon() {
 }
 
 function initExtension() {
-  chrome.extension.onRequest.addListener(newPageHandler);
-  chrome.tabs.onSelectionChanged.addListener(tabSelectionChangedHandler);
+  chrome.runtime.onMessage.addListener(newPageHandler);
+  chrome.tabs.onActivated.addListener(tabSelectionChangedHandler);
   chrome.windows.onFocusChanged.addListener(windowFocusChangedHandler);
   initIcon();
 

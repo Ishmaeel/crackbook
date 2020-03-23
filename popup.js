@@ -1,6 +1,7 @@
 // Mark the domain of the selected tab as junk.
 function markAsJunk() {
-  chrome.tabs.getSelected(null, function (tab) {
+  chrome.tabs.query({ active: true, currentWindow:true }, function (tabs) {
+    var tab = tabs[0];
     var junkDomains = getLocal('junkDomains');
     var domain = trimPath(trimWWW(trimProtocol(tab.url.trim())));
     junkDomains.push(domain);
@@ -12,7 +13,8 @@ function markAsJunk() {
 }
 
 window.onload = function() {
-  chrome.tabs.getSelected(null, function (tab) {
+  chrome.tabs.query({ active: true, currentWindow:true }, function (tabs) {
+    var tab = tabs[0];
     if (!lookupJunkDomain(tab.url) && tab.url.indexOf('.') != -1) {
       // Show current domain.
       var normalized_url = trimWWW(trimProtocol(tab.url.trim()));

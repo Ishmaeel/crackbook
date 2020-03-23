@@ -7,7 +7,8 @@ function getTopDomains(historyItems) {
   var domains = [];
   for (var i = 0; i < historyItems.length; i++) {
     var h = historyItems[i];
-    if (h.url && h.typedCount) {
+    // firefox does not seem to use typedCount, so we use visitCount as a backup
+    if (h.url && (h.typedCount || h.visitCount)) {
       var url = trimWWW(trimProtocol(h.url.trim()));
       var domain = trimPath(url);
 
@@ -20,9 +21,9 @@ function getTopDomains(historyItems) {
 
       if (domains.indexOf(domain) == -1) {
         domains.push(domain);
-        typedCounts[domain] = h.typedCount;
+        typedCounts[domain] = h.typedCount || h.visitCount;
       } else {
-        typedCounts[domain] += h.typedCount;
+        typedCounts[domain] += h.typedCount || h.visitCount;
       }
     }
   }
