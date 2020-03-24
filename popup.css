@@ -1,16 +1,73 @@
-body {
-  min-width: 300px;
-  overflow-x:hidden;
-  font-family: Georgia;
+/* import stylesheets */
+
+@import url("reset.css");
+
+body  {
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, Georgia, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+div {
+  background-color: #fcfcfc;
+  border-radius: 5px;
+  box-shadow: .5px .5px 5px rgba(0, 0, 0, 0.35);
+  padding: 20px 0px 0 0px;
+  width: 310px;
+}
+
+h1 {
+  align-items: center;
+  border-bottom: .5px solid #eee;
+  display: inline-flex;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 6px 17px 22px 27px;
+  width: 100%;
+}
+
+h1 p {
+  margin: 0 0 0 15px;
   white-space: nowrap;
 }
 
-img.icon {
-  width: 16px;
-  height: 16px;
-  border: 0;
+ul {
+  -webkit-padding-start: 0;
 }
 
-span#current_domain {
-  font-weight: bold;
+li {
+  display: flex;
+  font-size: 16px;
+  font-weight: 600;
+  list-style: none;
+}
+
+a {
+  align-items: center;
+  display: inline-flex;
+  color: inherit;
+  padding: 20px 20px 20px 30px;
+  text-decoration: none;
+  width: 100%
+}
+
+a p {
+  margin: 0 0 0 15px;
+}
+
+a:hover {
+  background-color: rgba(33, 150, 243, 0.05);
+  transition: ease;
+  transition-duration: .15s;
+}
+
+#mark_junk_button {
+  border-bottom: .5px solid #eee;
+}
+
+#options {
+  border-bottom: .5px solid #eee;
+}
+
+#stats_link {
+  padding: 22px 20px 22px 30px;
 }
