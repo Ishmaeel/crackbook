@@ -1,87 +1,108 @@
 <html>
-<head>
-  <script src="lib.js"></script>
-  <script src="options.js"></script>
-  <link rel="stylesheet" href="options.css" type="text/css" />
-  <title>Crackbook Settings</title>
-</head>
-
-<body>
-
-  <div id="header" class="heading">Crackbook Revival settings</div>
-
-  <div class="subheading">Junk site list</div>
-
-  <div class="details">
-    Domains with paths are allowed, for example "google.com/reader".
-  </div>
-
-  <ul id="siteBlacklist" class="domainList">
-    <li id="blacklistPlaceholder"><button id="generate_blacklist_button">Generate from History</button></li>
-    <li><button id="add_junk_domain_button">Add domain</button></li>
-  </ul>
-
-  <div class="subheading">Schedule</div>
-
-  <div>
-      Extension enabled between
-      <input id="startTime" name="startTime" type="text" />
-      and
-      <input id="endTime" name="endTime" type="text" />
-      <span class="details">(24-hour format)</span>
-  </div>
-
-  <div id="weekdays">
-    <label><input id="weekday-0" name="weekday-0" type="checkbox" />Sun</label>
-    <label><input id="weekday-1" name="weekday-1" type="checkbox" />Mon</label>
-    <label><input id="weekday-2" name="weekday-2" type="checkbox" />Tue</label>
-    <label><input id="weekday-3" name="weekday-3" type="checkbox" />Wed</label>
-    <label><input id="weekday-4" name="weekday-4" type="checkbox" />Thu</label>
-    <label><input id="weekday-5" name="weekday-5" type="checkbox" />Fri</label>
-    <label><input id="weekday-6" name="weekday-6" type="checkbox" />Sat</label>
-  </div>
-
-  <div class="subheading">Parameters</div>
-
-  <div>
-    <div class="parameterInput">
-      <label>Start blocking junk sites after <input id="dimmerThreshold" class="rightAlign" name="dimmerThreshold" type="text" /> junk hits in one day.</label>
-    </div>
-    <div class="parameterInput">
-      <label>Delay junk sites for <input id="dimmerDelay" class="rightAlign" name="dimmerDelay" type="text" /> seconds.</label>
-    </div>
-    <div class="parameterInput">
-      <label>Increase the delay by <input id="dimmerDelayIncrement" class="rightAlign" name="dimmerDelayIncrement" type="text" /> seconds after every block.</label>
-    </div>
-    <div class="parameterInput">
-      <label><input type="checkbox" id="reset_daily_flag" />Reset the delay every day to </label>
-      <input id="base_delay" class="rightAlign" name="base_delay"></input> seconds.
-    </div>
-    <div class="parameterInput">
-      <label>
-        <label><input id="checkActiveTab" name="checkActiveTab" type="checkbox" value="1" />Block new background tabs opened from a junk page.</label>
-      </label>
-    </div>
-    <div class="parameterInput">
-      <label>
-        <label><input id="blurBackground" name="blurBackground" type="checkbox" value="1" />Blur website instead of using solid overlay.</label>
-      </label>
-    </div>
-  </div>
-
-  <p>
-    <button id="save_button">SAVE</button>
-  </p>
-
-  <span id="saved_message" style="display: none">
-    Settings saved.
-  </span>
-
-  <style>
-    .parameterInput{
-      padding-top: 0.3em;
-    }
-  </style>
-
-</body>
-</html>
+  <head>
+    <script src="lib.js"></script>
+    <script src="options.js"></script>
+    <link rel="stylesheet" href="options.css" type="text/css"></link>
+    <title>Crackbook Settings</title>
+  </head>
+    <body>
+      <div class="menu">
+        <h1>
+          <img class="icon" src="images/settings-icon.svg"></img>Settings
+        </h1>
+          <h2>Junk Website List
+            <button class="tool-tip-button">
+              <img class="icon" src="images/tool-tip-icon.svg"></img>
+              <span class="tool-tip">Delay distracting websites by adding them to this list. Subdomains are also allowed. Example: www.reddit.com/r/cats. Uncheck websites to remove them from the list.</span>
+            </button>
+          </h2>
+            <button id="add_junk_domain_button" class="big-button">Add Website</button>
+            <button id="generate_blacklist_button" class="big-button">Generate from History</button>
+            <ul id="siteBlacklist" class="domainList">
+              <li id="blacklistPlaceholder"></li>
+            </ul>
+          <h2>Schedule
+            <button class="tool-tip-button">
+              <img class="icon" src="images/tool-tip-icon.svg"></img>
+              <span class="tool-tip">Enable delays at all times or only during specific browsing hours. Example: 17:00 - 21:00, Mon - Fri. Only select days that apply.</span>
+            </button>
+          </h2>
+            <div class="schedule">
+             <p>Enable extension during specified hours:</p>
+             <label for="startTime">Start time</label>
+             <label for="endTime">End time</label>
+            </div>
+              <form class="schedule">
+                <input id="startTime" name="startTime" type="time"></input>
+                <input id="endTime" name="endTime" type="time"></input>
+              </form>
+              <form id="weekdays" class="day">
+                <label class="checkbox-container"><p>Mon</p>
+                  <input id="weekday-0" name="weekday-0" type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container"><p>Tue</p>
+                  <input id="weekday-1" name="weekday-1" type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container"><p>Wed</p>
+                  <input id="weekday-2" name="weekday-2" type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container"><p>Thu</p>
+                  <input id="weekday-3" name="weekday-3" type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container"><p>Fri</p>
+                  <input id="weekday-4" name="weekday-4" type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container"><p>Sat</p>
+                  <input id="weekday-5" name="weekday-5" type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container"><p>Sun</p>
+                  <input id="weekday-6" name="weekday-6" type="checkbox">
+                  <span class="checkmark"></span>
+                </label>
+              </form>
+            <h2>Delay Times
+              <button class="tool-tip-button">
+                <img class="icon" src="images/tool-tip-icon.svg"></img>
+                <span class="tool-tip">Manage delay time presets here. Example: After 1 link is visited on a junk website a 3 second delay will occur. Each following visit will add 0.05 second increase to the initial delay time. The resulting time added is cumulative. Lastly, delay times are reset to 3 second after each day.</span>
+              </button>
+            </h2>
+            <form>
+              <input id="dimmerThreshold" class="parameterInput" name="dimmerThreshold" type="number"></input>
+              <label for="dimmerThreshold">links visited to delay junk websites</label><br>
+              <input id="dimmerDelay" class="parameterInput" name="dimmerDelay" step="0.01" type="number"></input>
+              <label for="dimmerDelay">second default delay time</label><br>
+              <input id="dimmerDelayIncrement" class="parameterInput" name="dimmerDelayIncrement" step="0.01" type="number"></input>
+              <label for="dimmerDelayIncrement">second increase after each visit</label><br>
+              <input id="base_delay" class="parameterInput" name="base_delay" step="0.01" type="number"></input>
+              <label for="base_delay">second delay reset each day</label>
+              <label class="switch">
+              <input id="reset_daily_flag" class="parameterInput" type="checkbox">
+              <span class="slider round"></span>
+              </input>
+              </label>
+            </form>
+            <form class="delay" class="parameterInput">
+              <div>
+                <label class="checkbox-container"><p>Delay tabs opened by junk websites</p>
+                  <input id="checkActiveTab" name="checkActiveTab" type="checkbox" value="1">
+                  <span class="checkmark"></span>
+                </label>
+              <div>
+              </div>
+                <label class="checkbox-container"><p>Blur website instead of solid overlay</p>
+                  <input id="blurBackground" name="blurBackground" type="checkbox" value="1">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </form>
+          <button id="save_button">Save</button>
+        <span id="saved_message" style="display: none">Settings saved.</span>
+      </div>
+    </body>
+  </html>
