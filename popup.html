@@ -1,33 +1,40 @@
+<!DOCTYPE html>
 <html>
-<head>
-  <link rel="stylesheet" href="popup.css" type="text/css" />
-
-  <script src="lib.js"></script>
-  <script src="popup.js"></script>
-</head>
-
-<body>
-
-  <p>
-  <a href="#" id="mark_junk_button" style="display: none">
-    <img src="/images/hamburger-19px.png" class="icon" />
-    Mark <span id="current_domain"></span> as junk
-  </a>
-  </p>
-
-  <p>
-    <a href="options.html#popup">
-      <img src="/images/wrench.png" class="icon"/>
-      Configure...
-    </a>
-  </p>
-
-  <p>
-    <a href="#" id="stats_link">
-      <img src="/images/stats-256.png" class="icon"/>
-      Statistics
-    </a>
-  </p>
-
-</body>
+  <head>
+    <script src="lib.js"></script>
+    <script src="popup.js"></script>
+    <link rel="stylesheet" href="popup.css" type="text/css"></link>
+    <title>Crackbook Revival</title>
+  </head>
+  <body>
+    <div id="popup">
+      <ul>
+        <li>
+          <h1>
+            <img class="icon" src="images/burger-icon.svg"></img>
+            <p>Crackbook Revival</p>
+          </h1>
+        </li>
+        <li>
+          <a id="mark_junk_button" href="#">
+            <img class="icon" src="images/add-icon.svg"></img>
+            <p>Add current site to junk list</p>
+            <span id="current_domain"></span>
+          </a>
+        </li>
+        <li>
+          <a id="options" href="options.html#popup">
+            <img class="icon" src="images/settings-icon.svg"></img>
+            <p>Settings</p>
+          </a>
+        </li>
+        <li>
+          <a href="#" id="stats_link">
+            <img class="icon" src="images/data-icon.svg"></img>
+            <p>Data</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </body>
 </html>
